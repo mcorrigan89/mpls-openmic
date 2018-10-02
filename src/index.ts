@@ -3,7 +3,7 @@ import { Server } from './server';
 
 const app = new Server();
 const httpServer = http.createServer(app.express);
-const port = 8080;
+const port = process.env.DATABASE_URL || 8080;
 
 httpServer.listen(port, (err: Error) => {
   if (err) {
