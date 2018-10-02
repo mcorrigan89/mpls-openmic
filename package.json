@@ -19,8 +19,7 @@
     "@types/jsonwebtoken": "^7.2.7",
     "@types/morgan": "^1.7.35",
     "nodemon": "^1.17.5",
-    "tslint": "^5.10.0",
-    "typescript": "^2.9.1"
+    "tslint": "^5.10.0"
   },
   "dependencies": {
     "cors": "^2.8.4",
@@ -33,6 +32,7 @@
     "pg": "^7.4.3",
     "reflect-metadata": "^0.1.12",
     "ts-node": "^6.0.5",
-    "typeorm": "^0.2.6"
+    "typeorm": "^0.2.6",
+    "typescript": "^2.9.1"
   }
 }
