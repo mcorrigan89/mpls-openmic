@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { GraphQLFieldConfigMap, GraphQLInputFieldConfigMap, GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList, GraphQLInputObjectType } from 'graphql';
+import { GraphQLFieldConfigMap, GraphQLInputFieldConfigMap, GraphQLNonNull, GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList, GraphQLInputObjectType } from 'graphql';
 import { Showcase } from '../../entity/showcase';
 import { timeslotType } from '../timeslot/type';
 import { TimeslotModel } from '../timeslot/model';
@@ -21,11 +21,11 @@ export const showcaseType = new GraphQLObjectType({
   description: 'Moto-i Showcase events',
   fields: () => ({
     id: {
-      type: GraphQLID
+      type: new GraphQLNonNull(GraphQLID)
     },
     ...baseShowcaseFields,
     timeslots: {
-      type: new GraphQLList(timeslotType),
+      type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(timeslotType))),
       resolve: (source) => new TimeslotModel().getTimeslotByShowcaseId(source.id)
     }
   })
