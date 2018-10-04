@@ -1,8 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn,  OneToMany } from 'typeorm';
 import { Timeslot } from './timeslot';
+import { Template } from './template';
 
 @Entity()
-export class Artist {
+export class Artist extends Template {
 
   @PrimaryGeneratedColumn('uuid')
   public id: string;
