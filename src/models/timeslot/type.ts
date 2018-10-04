@@ -8,7 +8,7 @@ import { Timeslot } from '../../entity/timeslot';
 
 const baseTimeslotFields: GraphQLFieldConfigMap<Timeslot, Request> & GraphQLInputFieldConfigMap = {
   time: {
-    type: GraphQLString
+    type: new GraphQLNonNull(GraphQLString)
   },
 };
 

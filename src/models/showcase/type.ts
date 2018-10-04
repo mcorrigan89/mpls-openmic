@@ -6,7 +6,7 @@ import { TimeslotModel } from '../timeslot/model';
 
 const baseShowcaseFields: GraphQLFieldConfigMap<Showcase, Request> & GraphQLInputFieldConfigMap = {
   date: {
-    type: GraphQLString
+    type: new GraphQLNonNull(GraphQLString)
   },
   description: {
     type: GraphQLString
