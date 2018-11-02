@@ -1,5 +1,5 @@
 {
-  "name": "openmic",
+  "name": "openmic-server",
   "version": "0.1.0",
   "description": "Open Mic Server",
   "main": "index.js",

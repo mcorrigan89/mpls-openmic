@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { GraphQLObjectType, GraphQLInputObjectType, GraphQLFieldConfigMap, GraphQLInputFieldConfigMap, GraphQLID, GraphQLString } from 'graphql';
+import { GraphQLObjectType, GraphQLInputObjectType, GraphQLFieldConfigMap, GraphQLInputFieldConfigMap, GraphQLNonNull, GraphQLID, GraphQLString } from 'graphql';
 import { ArtistModel } from '../artist/model';
 import { artistType } from '../artist/type';
 import { showcaseType } from '../showcase/type';
@@ -8,7 +8,7 @@ import { Timeslot } from '../../entity/timeslot';
 
 const baseTimeslotFields: GraphQLFieldConfigMap<Timeslot, Request> & GraphQLInputFieldConfigMap = {
   time: {
-    type: GraphQLString
+    type: new GraphQLNonNull(GraphQLString)
   },
 };
 
@@ -17,15 +17,15 @@ export const timeslotType = new GraphQLObjectType({
   description: 'Showcase Timeslot',
   fields: () => ({
     id: {
-      type: GraphQLID
+      type: new GraphQLNonNull(GraphQLID)
     },
     ...baseTimeslotFields,
     artist: {
-      type: artistType,
+      type: new GraphQLNonNull(artistType),
       resolve: (source) => new ArtistModel().getArtistByTimeslotId(source.id)
     },
     showcase: {
-      type: showcaseType,
+      type: new GraphQLNonNull(showcaseType),
       resolve: (source) => new ShowcaseModel().getShowcaseByTimeslotId(source.id)
     }
   })

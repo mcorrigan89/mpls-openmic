@@ -10,7 +10,7 @@ import { showcaseType, showcaseInputType, showcaseUpdateType } from '../showcase
 
 export namespace query {
   export const showcases = {
-    type: new GraphQLList(showcaseType),
+    type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(showcaseType))),
     args: {
       future: {
         type: GraphQLBoolean

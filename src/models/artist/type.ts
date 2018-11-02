@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { GraphQLFieldConfigMap, GraphQLInputFieldConfigMap, GraphQLObjectType, GraphQLInputObjectType, GraphQLList, GraphQLID, GraphQLString } from 'graphql';
+import { GraphQLFieldConfigMap, GraphQLInputFieldConfigMap, GraphQLNonNull, GraphQLObjectType, GraphQLInputObjectType, GraphQLList, GraphQLID, GraphQLString } from 'graphql';
 import { Artist } from '../../entity/artist';
 import { TimeslotModel } from '../timeslot/model';
 import { timeslotType } from '../timeslot/type';
@@ -18,11 +18,11 @@ export const artistType = new GraphQLObjectType({
   description: 'Open Mic Performers',
   fields: () => ({
     id: {
-      type: GraphQLID
+      type: new GraphQLNonNull(GraphQLID)
     },
     ...artistBaseFields,
     timeslots: {
-      type: new GraphQLList(timeslotType),
+      type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(timeslotType))),
       resolve: (source) => new TimeslotModel().getTimeslotByArtistId(source.id)
     }
   })

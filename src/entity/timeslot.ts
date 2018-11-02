@@ -1,9 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinTable } from 'typeorm';
 import { Artist } from './artist';
 import { Showcase } from './showcase';
+import { Template } from './template';
 
 @Entity()
-export class Timeslot {
+export class Timeslot extends Template {
 
   @PrimaryGeneratedColumn('uuid')
   public id: string;

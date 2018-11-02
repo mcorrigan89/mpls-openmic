@@ -8,7 +8,7 @@ import { Artist } from '../../entity/artist';
 
 export namespace query {
   export const artists: GraphQLFieldConfig<Artist, Request> = {
-    type: new GraphQLList(artistType),
+    type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(artistType))),
     resolve: () => new ArtistModel().getArtists()
   };
 
