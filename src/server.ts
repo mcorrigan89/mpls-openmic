@@ -28,8 +28,10 @@ export class Server {
 
   private databaseConnection = async () => {
     try {
-      return await dbConnect();
-    } catch (err) {
+      const db = await dbConnect();
+      console.log(db);
+      } catch (err) {
+      console.log(err);
       return err;
     }
   }

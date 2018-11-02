@@ -4,13 +4,15 @@ import { Entities } from './entity';
 
 export const dbConnect = () => createConnection({
   type: 'postgres',
-  // host: 'localhost',
-  // port: 5432,
-  // database: 'openmic',
-  url: process.env.DATABASE_URL,
+  host: 'localhost',
+  port: 5432,
+  database: 'openmic',
+  username: 'user_openmic',
+  password: 'openmic',
+  // url: process.env.DATABASE_URL,
   entities: Object.keys(Entities).map(key => Entities[key]),
   synchronize: true,
-  // dropSchema: true,
+  dropSchema: true,
   logging: true,
   cache: true
 });
