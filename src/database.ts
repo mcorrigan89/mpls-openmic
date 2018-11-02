@@ -13,6 +13,6 @@ export const dbConnect = () => createConnection({
   entities: Object.keys(Entities).map(key => Entities[key]),
   synchronize: true,
   dropSchema: true,
-  logging: true,
-  cache: true
+  // logging: true,
+  // cache: true
 });
