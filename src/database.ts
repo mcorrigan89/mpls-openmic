@@ -11,8 +11,8 @@ export const dbConnect = () => createConnection({
   password: 'openmic',
   // url: process.env.DATABASE_URL,
   entities: Object.keys(Entities).map(key => Entities[key]),
-  synchronize: true,
-  dropSchema: true,
-  // logging: true,
+  synchronize: false,
+  dropSchema: false,
+  logging: false,
   // cache: true
 });

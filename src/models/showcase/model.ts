@@ -18,7 +18,7 @@ export class ShowcaseModel {
 
   public getFutureShowcase = async () => {
     return this.showcaseRepo.createQueryBuilder('showcase')
-      .where('date > current_date')
+      .where("date > current_date - interval '1 days'")
       .orderBy('date')
       .cache(60000)
       .getMany();
