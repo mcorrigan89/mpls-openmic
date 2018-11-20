@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { GraphQLObjectType, GraphQLInputObjectType, GraphQLFieldConfigMap, GraphQLInputFieldConfigMap, GraphQLNonNull, GraphQLID, GraphQLString } from 'graphql';
 import { ArtistModel } from '../artist/model';
-import { artistType } from '../artist/type';
+import { artistType, artistInputType } from '../artist/type';
 import { showcaseType } from '../showcase/type';
 import { ShowcaseModel } from '../showcase/model';
 import { Timeslot } from '../../entity/timeslot';
@@ -27,6 +27,16 @@ export const timeslotType = new GraphQLObjectType({
     showcase: {
       type: new GraphQLNonNull(showcaseType),
       resolve: (source) => new ShowcaseModel().getShowcaseByTimeslotId(source.id)
+    }
+  })
+});
+
+export const timeslotInputType = new GraphQLInputObjectType({
+  name: 'TimeslotInput',
+  fields: () => ({
+    ...baseTimeslotFields,
+    artist: {
+      type: new GraphQLNonNull(artistInputType)
     }
   })
 });

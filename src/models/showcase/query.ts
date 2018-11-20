@@ -4,9 +4,11 @@ import {
   GraphQLID,
   GraphQLFieldConfig,
   GraphQLBoolean,
+  GraphQLString,
 } from 'graphql';
 import { ShowcaseModel } from '../showcase/model';
-import { showcaseType, showcaseInputType, showcaseUpdateType } from '../showcase/type';
+import { showcaseType } from '../showcase/type';
+import { timeslotInputType } from '../timeslot/type';
 
 export namespace query {
   export const showcases = {
@@ -33,20 +35,41 @@ export namespace mutation {
   export const createShowcase: GraphQLFieldConfig<{}, {}> = {
     type: showcaseType,
     args: {
-      showcase: {
-        type: new GraphQLNonNull(showcaseInputType)
+      date: {
+        type: new GraphQLNonNull(GraphQLString)
+      },
+      description: {
+        type: new GraphQLNonNull(GraphQLString)
+      },
+      link: {
+        type: GraphQLString
+      },
+      timeslots: {
+        type: new GraphQLList(timeslotInputType)
       }
     },
-    resolve: (_, args) => new ShowcaseModel().createShowcase(args.showcase)
+    resolve: (_, args) => new ShowcaseModel().createShowcase(args.date, args.description, args.link, args.timeslots)
   };
 
   export const updateShowcase: GraphQLFieldConfig<{}, {}> = {
     type: showcaseType,
     args: {
-      showcase: {
-        type: new GraphQLNonNull(showcaseUpdateType)
+      id: {
+        type: new GraphQLNonNull(GraphQLID)
+      },
+      date: {
+        type: new GraphQLNonNull(GraphQLString)
+      },
+      description: {
+        type: new GraphQLNonNull(GraphQLString)
+      },
+      link: {
+        type: GraphQLString
+      },
+      timeslots: {
+        type: new GraphQLList(timeslotInputType)
       }
     },
-    resolve: (_, args) => new ShowcaseModel().createShowcase(args.showcase)
+    resolve: (_, args) => new ShowcaseModel().updateShowcase(args.id, args.date, args.description, args.link, args.timeslots)
   };
 }

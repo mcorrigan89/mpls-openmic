@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, VersionColumn } from 'typeorm';
+import { PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, VersionColumn, Column } from 'typeorm';
 
 export abstract class Template  {
 
@@ -13,4 +13,7 @@ export abstract class Template  {
 
   @VersionColumn({ default: 1 })
   public version: number;
+
+  @Column('bool', { default: false })
+  public deleted: boolean;
 }

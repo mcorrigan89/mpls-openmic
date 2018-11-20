@@ -6,7 +6,7 @@ import { timeslotType } from '../timeslot/type';
 
 const artistBaseFields: GraphQLFieldConfigMap<Artist, Request> & GraphQLInputFieldConfigMap = {
   name: {
-    type: GraphQLString
+    type: new GraphQLNonNull(GraphQLString)
   },
   description: {
     type: GraphQLString
